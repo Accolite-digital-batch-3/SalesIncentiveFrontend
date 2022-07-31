@@ -1,35 +1,11 @@
-
 .heading{
     font-family: 'Bebas Neue',cursive;
     text-align: center;
 }
-
-.loginstyle{
-    border: 2px solid white;
-    padding: 30px;
-    border-radius: 2vw;
-    margin: 6vw;
-    background-color: white;
+body{
+  background: #ecf0f3;
 }
-
-.login{
-    font-family: 'Antic Slab', serif;
-}
-img{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    size: 5px;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
-
-input {
-  caret-color: red;
-}
-
-body {
+.Loginbody {
   margin: 0;
   width: 100vw;
   height: 100vh;
@@ -43,7 +19,42 @@ body {
   font-family: poppins;
 }
 
+.loginstyle{
+  
+  text-align: center;
+    display: flex;
+    border: 2px solid white;
+    padding: 30px;
+    border-radius: 2vw;
+    margin: 6vw;
+    background-color: white;
+}
+
+.login{
+    font-family: 'Antic Slab', serif;
+    padding-left: 569px;
+    padding-top: 3%;
+}
+img{
+
+  height: 100px;
+  width: 100px;
+  margin: auto;
+  border-radius: 50%;
+  box-sizing: border-box;
+  box-shadow: 7px 7px 10px #cbced1, -7px -7px 10px white;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+
+input {
+  caret-color: red;
+}
+
+
+
 .container {
+  
   position: relative;
   width: 350px;
   height: 500px;
