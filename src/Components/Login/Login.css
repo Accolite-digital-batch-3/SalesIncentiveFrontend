@@ -52,8 +52,59 @@ caret-color: red;
 }
 
 
+body{
+  background: #ecf0f3;
+}
+.Loginbody {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ecf0f3;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  place-items: center;
+  overflow: hidden;
+  font-family: poppins;
+}
+
+.loginstyle{
+  
+  text-align: center;
+    display: flex;
+    border: 2px solid white;
+    padding: 30px;
+    border-radius: 2vw;
+    margin: 6vw;
+    background-color: white;
+}
+
+.login{
+    font-family: 'Antic Slab', serif;
+    padding-left: 569px;
+    padding-top: 3%;
+}
+img{
+
+  height: 100px;
+  width: 100px;
+  margin: auto;
+  border-radius: 50%;
+  box-sizing: border-box;
+  box-shadow: 7px 7px 10px #cbced1, -7px -7px 10px white;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+
+input {
+  caret-color: red;
+}
+
+
 
 .container {
+<<<<<<< HEAD
 
 position: relative;
 width: 500px;
@@ -63,6 +114,17 @@ padding: 40px;
 box-sizing: border-box;
 background: #ecf0f3;
 box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+=======
+  
+  position: relative;
+  width: 350px;
+  height: 500px;
+  border-radius: 20px;
+  padding: 40px;
+  box-sizing: border-box;
+  background: #ecf0f3;
+  box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+>>>>>>> 97146a7e0b0fbf03ed4cb76bc5a79a1735ec9572
 }
 
 .brand-logo {

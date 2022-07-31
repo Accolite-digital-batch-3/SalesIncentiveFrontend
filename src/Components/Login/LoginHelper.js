@@ -27,7 +27,7 @@ class LoginHelper extends Component{
 
     handleSubmit = event=>{
         
-        console.log("Submitted");
+        //console.log("Submitted");
         event.preventDefault();
 
         const {history} = this.props;
@@ -38,27 +38,27 @@ class LoginHelper extends Component{
             'role':this.state.role,
         }
 
-        console.log(userLogin);
+       // console.log(userLogin);
         axios.post('http://localhost:8080/sales/adminlogin',userLogin).then(
             res=>{
                 
-                console.log(res.data);
+                //console.log(res.data);
                 localStorage.setItem('userEmail',(res.data)?this.state.email:'null');
-                console.log(localStorage.getItem('userEmail'));
+                //console.log(localStorage.getItem('userEmail'));
 
                 if(res.data) 
                 {
                     alert('Logged in Succsesfully');
                 }
                 else alert("Invalid Username/password");
-                console.log(this.state.role);
+                //console.log(this.state.role);
                 if(localStorage.getItem('userEmail') === 'admin') {
                     //redirect to /admin
                     history.push("/admin");
                 }else if (localStorage.getItem('userEmail') !== 'null'){
                     //redirect to /home
                     
-                    history.push("/admin");
+                    history.push("/home");
                 }
                 
 

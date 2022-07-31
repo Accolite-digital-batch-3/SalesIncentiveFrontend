@@ -3,16 +3,16 @@ import "../Login/Login.css"
 import LoginHelper  from './LoginHelper';
 import {withRouter, useHistory} from 'react-router-dom'
 
-const Login = () => {
+function Login () {
 
     const history = useHistory();
 
     useEffect(()=>{
         function fetchlogin(){
-        if(localStorage.getItem('userEmail')!=='null'){
+        if(localStorage.getItem('userEmail')!=="null"){
             alert("You have already Logged in");
             console.log(localStorage.getItem('userEmail'));
-            // history.push("/home");
+            history.push("/home");
         }
         else{
             console.log("Already called the page");
@@ -21,7 +21,7 @@ const Login = () => {
 
     fetchlogin();
 
-    },[])
+    },[history])
 
   return (
     <div id='loginBox' className="Loginbody">
