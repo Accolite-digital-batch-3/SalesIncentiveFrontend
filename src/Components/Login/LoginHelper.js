@@ -74,22 +74,22 @@ class LoginHelper extends Component{
     render(){
         return(
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <div class="container">
-                        <div class="brand-logo">
-                        <img src={login} className="img" alt="loginImage"></img>
-                        </div>
-                        <div class="brand-title">LOGIN</div>
-                        <div class="inputs">
-                            <label>EMAIL</label>
-                            <input type="email" placeholder="example@test.com" id="email" onChange={this.handleEmailChange} value={this.useremail}/>
-                            <label>PASSWORD</label>
-                            <input type="password" placeholder="Min 6 charaters long" id="password" onChange={this.handlePasswordChange} value={this.password}/>
-                            <button type="submit" id="submitButton">LOGIN</button>
-                        </div>
+            <form onSubmit={this.handleSubmit}>
+                <div class="container">
+                    <div class="brand-logo">
+                    <img src={login} className="img" alt="loginImage"></img>
                     </div>
-                </form>
-            </div>
+                    <div class="brand-title">LOGIN</div>
+                    <div class="inputs">
+                        <label>EMAIL</label>
+                        <input type="email" placeholder="example@test.com" id="email" onChange={this.handleEmailChange} value={this.useremail}/>
+                        <label>PASSWORD</label>
+                        <input type="password" placeholder="Min 6 charaters long" id="password" onChange={this.handlePasswordChange} value={this.password}/>
+                        <button type="submit" id="submitButton">LOGIN</button>
+                    </div>
+                </div>
+            </form>
+        </div>
         )
     }
 }

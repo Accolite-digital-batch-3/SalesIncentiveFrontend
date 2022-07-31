@@ -24,13 +24,12 @@ const Login = () => {
     },[])
 
   return (
-    <div id='loginBox' >
-        <div className='loginstyle'>
-            {/* <h1 className='heading'></h1> */}
-            <h2 className='login'>Sales Incentive Management System</h2>
+    <div id='loginBox' className="Loginbody">
+    <div className='loginstyle'>
+        <h1 className="login">Sales Incentive Management System</h1>
             <LoginHelper />
-        </div>
     </div>
+</div>
   )
 }
 
