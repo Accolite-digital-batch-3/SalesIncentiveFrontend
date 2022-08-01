@@ -12,7 +12,7 @@ function Login () {
         if(localStorage.getItem('userEmail')!=="null"){
             alert("You have already Logged in");
             console.log(localStorage.getItem('userEmail'));
-            history.push("/home");
+            history.push("/admin");
         }
         else{
             console.log("Already called the page");
