@@ -12,7 +12,7 @@ function Login () {
         if(localStorage.getItem('userEmail')!=="null"){
             alert("You have already Logged in");
             console.log(localStorage.getItem('userEmail'));
-            history.push("/home");
+            history.push("/admin");
         }
         else{
             console.log("Already called the page");
@@ -25,11 +25,11 @@ function Login () {
 
   return (
     <div id='loginBox' className="Loginbody">
-        <div className='loginstyle'>
-            <h1 className="login">Sales Incentive Management System</h1>
-                <LoginHelper />
-        </div>
+    <div className='loginstyle'>
+        <h1 className="login">Sales Incentive Management System</h1>
+            <LoginHelper />
     </div>
+</div>
   )
 }
 
