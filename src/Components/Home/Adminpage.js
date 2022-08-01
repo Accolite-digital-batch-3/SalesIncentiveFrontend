@@ -36,11 +36,13 @@ const Adminpage =()=>
    }
     return (
       <div>
-      <div class="navbar">
+      <div className="navbar">
          <a class="active" >Home</a>
          <a onClick={toggleShow}>Add User</a>
          <a onClick={toggleShowdelete}>Delete User</a>
-         <a href="#about">About</a>
+         <div  className='logout'>
+         <a> Logout</a>
+         </div>
          </div>
          <div className='dialog-body'>
          
