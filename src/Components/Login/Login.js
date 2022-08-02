@@ -9,6 +9,7 @@ function Login () {
 
     useEffect(()=>{
         function fetchlogin(){
+
         if(localStorage.getItem('userEmail')!=="null"){
             alert("You have already Logged in");
             console.log(localStorage.getItem('userEmail'));
@@ -16,6 +17,13 @@ function Login () {
         }
         else{
             console.log("Already called the page");
+          var userInfo=JSON.parse(localStorage.getItem('userInfo'));
+          if(userInfo!==null){
+          if (userInfo.role === "admin") {
+            history.push("/admin");
+          } else if (userInfo.role === "sales person") {
+            history.push("/home");
+          }
         }
     }
 
@@ -25,11 +33,11 @@ function Login () {
 
   return (
     <div id='loginBox' className="Loginbody">
-    <div className='loginstyle'>
-        <h1 className="login">Sales Incentive Management System</h1>
-            <LoginHelper />
+        <div className='loginstyle'>
+           
+                <LoginHelper />
+        </div>
     </div>
-</div>
   )
 }
 
