@@ -9,6 +9,14 @@ function Login () {
 
     useEffect(()=>{
         function fetchlogin(){
+
+        if(localStorage.getItem('userEmail')!=="null"){
+            alert("You have already Logged in");
+            console.log(localStorage.getItem('userEmail'));
+            
+        }
+        else{
+            console.log("Already called the page");
           var userInfo=JSON.parse(localStorage.getItem('userInfo'));
           if(userInfo!==null){
           if (userInfo.role === "admin") {
