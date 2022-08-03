@@ -1,10 +1,12 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
-
+import styled from 'styled-components'
 import './App.css';
 import Adminpage from './Components/Home/Adminpage';
 import Login from "./Components/Login/Login.js";
+import Sidebar from './Components/SalesPage/Sidebar'
+import Dashboard from './Components/SalesPage/Dashboard'
 
 
 function App() {
@@ -17,6 +19,12 @@ function App() {
         <Route exact path={["/admin"]}>
           <Adminpage/>
         </Route>
+        <Route exact path={["/", "/salesuser"]} >
+           <Div>
+        <Sidebar />
+        <Dashboard />
+    </Div>
+    </Route>
       </Switch>
     </Router>
       
@@ -25,3 +33,6 @@ function App() {
 }
 
 export default App;
+const Div = styled.div `
+position: relative;
+`;
