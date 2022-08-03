@@ -1,5 +1,6 @@
-import react,{useState} from 'react';
-import { ReactDialogBox } from 'react-js-dialog-box'
+import {useState} from 'react';
+
+import axios from 'axios'
 import 'react-js-dialog-box/dist/index.css';
 import '../Home/adminpage.css';
 import {
@@ -56,33 +57,28 @@ const Adminpage =()=>
     setFile(e.target.files[0]);
 };
 
-const handleOnSubmit = (e) => {
+const handleOnSubmit = async (e) => {
   e.preventDefault();
-
-  if (file) {
-    fileReader.onload = function (event) {
-      const text = event.target.result;
-      csvFileToArray(text);
-    };
-
-    fileReader.readAsText(file);
+  console.log("Hello")
+  const formData = new FormData();
+  formData.append("file", file);
+  console.log(formData);
+  try {
+    const response = await axios({
+      method: "post",
+      url: "http://localhost:8080/sales-line-item/upload",
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    if(response){
+      alert(response.data);
+    }
+  } catch(error) {
+    console.log(error)
   }
+  document.getElementById("csvFileInput").value=null; 
 };
-const csvFileToArray = string => {
-  const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
-  const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
 
-  const array = csvRows.map(i => {
-    const values = i.split(",");
-    const obj = csvHeader.reduce((object, header, index) => {
-      object[header] = values[index];
-      return object;
-    }, {});
-    return obj;
-  });
-
-  setArray(array);
-};
 const headerKeys = Object.keys(Object.assign({}, ...array));
     return (
       <div>
@@ -143,7 +139,7 @@ const headerKeys = Object.keys(Object.assign({}, ...array));
          
          {basicModal && (
           <>
-          <div className='container'>
+          <div className='container1'>
           <MDBModal show={basicModal} setShow={setBasicModal} tabIndex='-1'>
             <MDBModalDialog>
               <MDBModalContent>
@@ -171,7 +167,7 @@ const headerKeys = Object.keys(Object.assign({}, ...array));
         )}
         {deleteuser && (
           <>
-          <div className='container'>
+          <div className='container1'>
           <MDBModal show={deleteuser} setShow={setDeleteuser} tabIndex='-1'>
             <MDBModalDialog>
               <MDBModalContent>
