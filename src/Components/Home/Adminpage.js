@@ -22,6 +22,12 @@ const Adminpage =()=>
     const [importcsv,setImportcsv]=useState(false);
     const [file, setFile] = useState();
     const [array, setArray] = useState([]);
+    const [empName,setEmpname]=useState('');
+    const [empEmail,setEmpemail]=useState('');
+    const [empPassword,setEmppassword]=useState('');
+    const [role,setRole]=useState('');
+    const [locationId,setLocationid]=useState('');
+    const [reportingHead,setReportinghead]=useState('');
     
 
     const fileReader = new FileReader();
@@ -42,9 +48,25 @@ const Adminpage =()=>
     {deleteuser && setDeleteuser(!deleteuser);}
 
   }
-   const adduser =()=>
+   const adduser =(event)=>
    {
-    alert('added')
+    event.preventDefault();
+    fetch('http://localhost:8080/employees/addEmployee', {
+  method: 'POST',
+  body: JSON.stringify({
+    empName:empName,
+    empEmail:empEmail,
+    empPassword:empPassword,
+    role:role,
+    locationId:locationId,
+    reportingHead:reportingHead
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+})
+  .then((response) => response.json())
+  .then((json) => console.log(json));
    }
 
    const deleteUser=()=>
@@ -147,10 +169,41 @@ const headerKeys = Object.keys(Object.assign({}, ...array));
                   <MDBModalTitle>Add user</MDBModalTitle>
                 </MDBModalHeader>
                 <MDBModalBody>
-                  <label>username</label>
-                  <input type='text'/>
+                <label>username</label>
+                  <input type='text' value={empName} onChange={(e)=>{setEmpname(e.target.value)}}/>
                   <label>email</label>
-                  <input type='text'/>
+                  <input type='text' value={empEmail} onChange={(e)=>{setEmpemail(e.target.value)}}/>
+                  <label>password</label>
+                  <input type='password' value={empPassword} onChange={(e)=>{setEmppassword(e.target.value)}}/>
+                  <label>role</label>
+                  <select type='text'onChange={(e)=>{setRole(e.target.value)}}>
+                    <option>select role</option>
+                    <option name='Admin'>admin</option>
+                    <option name='sales person'>sales person</option>
+                    </select>
+                  <label>location</label>
+                  <select type='text'  onChange={(e)=>{
+                    if(e.target.value==='Chennai')
+                    {
+                      setLocationid('1')
+                    }
+                    else if(e.target.value==='Mumbai')
+                    {
+                      setLocationid('2')
+                    }
+                    else if(e.target.value==='Hyderabad')
+                    {
+                      setLocationid('3')
+                    }
+                    
+                    }} >
+                      <option>select location</option>
+                    <option name='Chennai'>Chennai</option>
+                    <option name='Mumbai'>Mumbai</option>
+                    <option name='Hyderabad'>Hyderabad</option>
+                    </select>
+                  <label>reportinghead</label>
+                  <input type='text' value={reportingHead} onChange={(e)=>{setReportinghead(e.target.value)}}/>
                 </MDBModalBody>
     
                 <MDBModalFooter>

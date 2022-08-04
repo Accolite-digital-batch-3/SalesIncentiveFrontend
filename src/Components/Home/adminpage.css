@@ -47,3 +47,16 @@ box-sizing: border-box;
 background: #ecf0f3;
 
 }
+
+.container1 input{
+
+  height: 35px;
+}
+
+.container1 select{
+  height: 35px;
+  width: 100%;
+  background: #ecf0f3;
+  border-radius: 50px;
+  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+}
