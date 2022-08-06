@@ -1,43 +1,83 @@
 import React from 'react'
+import axios from "axios"
+import { useEffect,useState } from "react";
 import styled from 'styled-components'
 
-function Orders() {
+//function Orders() {
+const Orders = ()=>{
+    const [product,setProduct] = useState([])
+    const [notes,getNotes] = useState([])
+  
+    const getProduct = async () => {
+        try {
+        axios.get("http://localhost:8080/sales-line-item").then((response)=>{
+            const alldata = response.data._embedded.salesLineItem;
+            getNotes(alldata);
+            console.log(alldata)
+       setProduct(alldata)
+        }) 
+    }
+        catch (e) {
+            console.log(e)
+        }
+    }
+    const getEmployee = async () => {
+        try {
+        axios.get("http://localhost:8080/employees").then((response)=>{
+            const alldata = response.data._embedded.employees;
+       getNotes(alldata)
+        }) 
+    }
+        catch (e) {
+            console.log(e)
+        }
+    }
+useEffect(()=>{
+    getProduct()
+    getEmployee()
+},[])
     return (
         <Section>
-        <div className="orders">
-      <div className="orders__details">
+        <div className="orders__details">
           <div>
                 <h4>Recent Order</h4> 
           </div>
           <div> 
             <button> SEE ALL</button>
             
-          </div>
-        </div>
-        <div className="orders__table">
+            <div className="orders__table">
             <table>
             <tr>
-              <th>Product Type</th>
-              <th>Product Name</th>
-              <th>Date</th>
-              <th>Price</th>
-              <th>Status</th>
+              <th>Employee Name</th>
+              <th>Employee Email</th>
+              <th>Sold Date</th>
+              <th>Sold Cost</th>
             </tr>
             <tr>
-              <td>Two-wheeler</td>
-              <td className="img"><span>KTM</span></td>
-              <td>Jul 29, 2021</td>
-              <td>329000</td>
-              <td ><button>Complete</button></td>
+                <td>{notes.map(item=>(
+                <li key={item.id}>{item.empName}</li>
+                 ))}</td>
+                <td>{notes.map(item=>(
+                <li key={item.id}>{item.empEmail}</li>
+                 ))}</td>
+                <td>{product.map(item=>(
+                <li key={item.id}>{item.soldDate}</li>
+                 ))}</td>
+                 <td>{product.map(item=>(
+                <li key={item.id}>{item.soldCost}</li>
+                 ))}</td>
             </tr>
+            
             </table>
-        </div>
+
+        
+        </div></div>
         </div>
         </Section>
     )
-}
+};
 
-export default Orders
+export default Orders;
 const Section = styled.section`
 .orders {
     color: black;

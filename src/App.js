@@ -19,12 +19,10 @@ function App() {
         <Route exact path={["/admin"]}>
           <Adminpage/>
         </Route>
-        <Route exact path={["/", "/salesuser"]} >
-           <Div>
-        <Sidebar />
+        <Route exact path={["/sales"]} > 
+        <Sidebar/>
         <Dashboard />
-    </Div>
-    </Route>
+        </Route>
       </Switch>
     </Router>
       

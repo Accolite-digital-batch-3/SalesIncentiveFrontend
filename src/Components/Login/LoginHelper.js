@@ -49,7 +49,7 @@ class LoginHelper extends Component {
           history.push("/admin");
         } else if (res.data.role === "sales person") {
           localStorage.setItem('userInfo',JSON.stringify(res.data));
-          history.push("/home");
+          this.props.history.push("/sales");
         }
       })
       .catch((err) => {

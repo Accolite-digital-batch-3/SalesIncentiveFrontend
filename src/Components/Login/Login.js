@@ -2,9 +2,8 @@ import React, { useEffect } from 'react'
 import "../Login/Login.css"
 import LoginHelper  from './LoginHelper';
 import {withRouter, useHistory} from 'react-router-dom'
-
+import { useNavigate } from "react-router-dom";
 function Login () {
-
     const history = useHistory();
 
     useEffect(()=>{
@@ -22,7 +21,8 @@ function Login () {
           if (userInfo.role === "admin") {
             history.push("/admin");
           } else if (userInfo.role === "sales person") {
-            history.push("/home");
+            this.props.history.push("/sales");
+            //navigate("/sales");
           }
         }
     }
