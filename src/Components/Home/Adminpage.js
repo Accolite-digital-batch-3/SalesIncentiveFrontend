@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
 
 import axios from 'axios'
 import 'react-js-dialog-box/dist/index.css';
@@ -28,6 +28,38 @@ const Adminpage =()=>
     const [role,setRole]=useState('');
     const [locationId,setLocationid]=useState('');
     const [reportingHead,setReportinghead]=useState('');
+    const [fetchData,setData]=useState([]);
+    
+    const data = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/employees/all');
+        const json = await response.json();
+        console.log(json);
+        setData(json);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+    
+    
+     useEffect(() => {
+     
+  
+      const data = async () => {
+        try {
+          const response = await fetch('http://localhost:8080/employees/all');
+          const json = await response.json();
+          console.log(json);
+          setData(json);
+        } catch (error) {
+          console.log("error", error);
+        }
+      };
+  
+      data();
+  }, []);
+
+
     
 
     const fileReader = new FileReader();
@@ -35,6 +67,7 @@ const Adminpage =()=>
   const toggleShow = () => { setBasicModal(!basicModal);
                                {deleteuser && setDeleteuser(!deleteuser);}
                               {importcsv && setImportcsv(!importcsv)}
+                              
   }
   const toggleShowdelete = () =>{ setDeleteuser(!deleteuser);
    {basicModal && setBasicModal(!basicModal);  }
@@ -48,7 +81,7 @@ const Adminpage =()=>
     {deleteuser && setDeleteuser(!deleteuser);}
 
   }
-   const adduser =(event)=>
+   const adduser =async(event)=>
    {
     event.preventDefault();
     fetch('http://localhost:8080/employees/addEmployee', {
@@ -67,11 +100,20 @@ const Adminpage =()=>
 })
   .then((response) => response.json())
   .then((json) => console.log(json));
+
+  data();
    }
 
-   const deleteUser=()=>
-   {
-    alert('deleted')
+   const deleteUser= async(props,e)=>
+   { const a=props;
+     
+     fetch(`http://localhost:8080/employees/deleteEmployee/${a}`, {
+       method: 'DELETE',
+     });
+    console.log(props);
+    
+    data();
+     
    }
 
 
@@ -220,30 +262,30 @@ const headerKeys = Object.keys(Object.assign({}, ...array));
         )}
         {deleteuser && (
           <>
-          <div className='container1'>
-          <MDBModal show={deleteuser} setShow={setDeleteuser} tabIndex='-1'>
-            <MDBModalDialog>
-              <MDBModalContent>
-                <MDBModalHeader>
-                  <MDBModalTitle>Delete user</MDBModalTitle>
-                </MDBModalHeader>
-                <MDBModalBody>
-                  <label>username</label>
-                  <input type='text'/>
-                  <label>email</label>
-                  <input type='text'/>
-                </MDBModalBody>
-    
-                <MDBModalFooter>
-                  <MDBBtn color='secondary' onClick={toggleShowdelete}>
-                    Close
-                  </MDBBtn>
-                  <MDBBtn onClick={deleteUser}>Delete User</MDBBtn>
-                </MDBModalFooter>
-              </MDBModalContent>
-            </MDBModalDialog>
-          </MDBModal>
-          </div>
+          <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>role</th>
+                  <th>delete user</th>
+                 </tr>
+              </thead>
+              <tbody>
+             {fetchData.map((val,i) => {
+             return(
+            <tr key={i}>
+              
+              <td>{val.empId}</td>
+              <td>{val.empName}</td>
+              <td>{val.role}</td>
+              <td><button onClick={(e) => deleteUser(val.empId, e)}>delete</button></td>
+            </tr>) 
+          
+         })} 
+              </tbody>
+          </table>
+          
         </>
         )}
         
